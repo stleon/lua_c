@@ -11,7 +11,7 @@ int main(void) {
         luaL_openlibs(L); /* open std libs */
 
         while (fgets(buff, sizeof(buff), stdin) != NULL) {
-                error = liaL_loadstring(L, buff) || lua_pcall(L, 0, 0, 0);
+                error = luaL_loadstring(L, buff) || lua_pcall(L, 0, 0, 0);
                 if (error) {
                         fprintf(stderr, "%s\n", lua_tostring(L, -1));
                         lua_pop(L, 1); /* pop error message from stack */
